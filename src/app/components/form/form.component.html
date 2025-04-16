@@ -2,18 +2,33 @@
   <mat-form-field>
     <mat-label>Name</mat-label>
     <input formControlName="name" matInput>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('name')?.touched && applyForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-hint>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('name')?.touched && applyForm.get('name')?.hasError('minlength')">
+      Name should be longer than 3
+    </mat-hint>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Lastname</mat-label>
     <input formControlName="lastname" matInput>
-    <mat-hint style="color: red;" *ngIf="applyForm.get('lastname')?.touched && applyForm.get('lastname')?.hasError('required')">
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('lastname')?.touched && applyForm.get('lastname')?.hasError('required')">
       Lastname is required
+    </mat-hint>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('lastname')?.touched && applyForm.get('lastname')?.hasError('minlength')">
+      Lastname should be longer than 3
     </mat-hint>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Date of birth</mat-label>
     <input formControlName="date" matInput [matDatepicker]="picker">
-    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-hint *ngIf="!(applyForm.get('date')?.hasError('required'))">MM/DD/YYYY</mat-hint>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('date')?.touched && applyForm.get('date')?.hasError('required')">Date is required</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -25,18 +40,31 @@
       <mat-option value="angular">Angular</mat-option>
       <mat-option value="vue">Vue.js</mat-option>
     </mat-select>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('tech')?.touched && applyForm.get('tech')?.hasError('required')">Technology is
+      required</mat-hint>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Version</mat-label>
     <input formControlName="version" matInput>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('version')?.touched && applyForm.get('version')?.hasError('required')">Version is
+      required</mat-hint>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input formControlName="email" matInput>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+      *ngIf="applyForm.get('email')?.touched && applyForm.get('email')?.hasError('required')">Email is
+      required</mat-hint>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Hobbies(,)</mat-label>
     <input formControlName="hobbies" matInput>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);" *ngIf="applyForm.get('hobbies')?.touched && applyForm.get('hobbies')?.hasError('required')">Hobbies are required</mat-hint>
   </mat-form-field>
-  <button type="submit" class="primary">Submit</button>
+  <button type="submit" class="submit">Submit</button>
+  <div class="message" *ngIf="result?.message">
+    {{ result.message }}
+  </div>
 </form>
