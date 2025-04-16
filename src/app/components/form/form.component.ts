@@ -5,9 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormService } from '../../servises/form.service';
-
 
 export type Form = {
   name: string;
@@ -21,15 +20,20 @@ export type Form = {
 
 @Component({
   selector: 'app-form',
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, NgIf],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, ReactiveFormsModule, NgIf, NgFor],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
   providers: [provideNativeDateAdapter()]
 })
 export class FormComponent {
 
-  constructor(private formService: FormService) {
 
+
+  constructor(private formService: FormService) {
+    this.applyForm.get('tech')?.valueChanges.subscribe(value => {
+      this.selectedTech = value;
+      this.applyForm.get('version')?.reset();
+    });
   }
 
   applyForm = new FormGroup({
@@ -43,6 +47,13 @@ export class FormComponent {
   });
 
   result: { message: string } = { message: "" };
+
+  versionValues: { [key: string]: string[] } = {
+    angular: ['1.1.1', '1.2.1', '1.3.3'],
+    react: ['2.1.2', '3.2.4', '4.3.1'],
+    vue: ['3.3.1', '5.2.1', '5.1.3'],
+  };
+  selectedTech: string | null = null;
 
   onSubmit() {
     if (this.applyForm.invalid) {
