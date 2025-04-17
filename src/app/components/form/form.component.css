@@ -5,7 +5,7 @@ form {
   padding-top: 150px;
 }
 form mat-form-field {
-  width: 300px;
+  width: 310px;
   margin-top: 10px;
 }
 form .error {
@@ -13,8 +13,8 @@ form .error {
   border-bottom: 2px solid rgb(255, 146, 146);
 }
 form .submit {
-  width: 300px;
-  margin-top: 20px;
+  width: 310px;
+  margin-top: 150px;
   font-size: 30px;
   background-color: green;
   color: white;
@@ -27,5 +27,7 @@ form .message {
   margin-top: 10px;
   color: white;
   font-size: 18px;
+  position: absolute;
+  top: 855px;
 }
 

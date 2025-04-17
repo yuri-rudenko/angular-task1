@@ -70,16 +70,18 @@
     <mat-hint class="error" style="color: rgb(255, 146, 146);"
       *ngIf="applyForm.get('email')?.touched && applyForm.get('email')?.hasError('required')">Email is
       required</mat-hint>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Hobbies(,)</mat-label>
-    <input formControlName="hobbies" matInput>
     <mat-hint class="error" style="color: rgb(255, 146, 146);"
-      *ngIf="applyForm.get('hobbies')?.touched && applyForm.get('hobbies')?.hasError('required')">Hobbies are
-      required</mat-hint>
+              *ngIf="applyForm.get('email')?.touched && applyForm.get('email')?.hasError('email')">
+      Email is invalid
+    </mat-hint>
   </mat-form-field>
+
   <button type="submit" class="submit">Submit</button>
   <div class="message" *ngIf="result?.message">
     {{ result.message }}
   </div>
 </form>
+
+<app-hobbies (sendToggled)="changeHobbies($event)" />
+
+

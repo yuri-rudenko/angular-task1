@@ -1,0 +1,48 @@
+form {
+  position: relative;
+  bottom: 190px;
+  transform: translate(-50%, -0%);
+  margin-left: 50%;
+  width: 310px;
+}
+
+form mat-form-field {
+  width: 150px;
+  font-size: 14px;
+}
+
+form .left {
+  margin-right: 10px;
+}
+
+form .submit {
+  width: 310px;
+  margin-top: 5px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+form .hobbies {
+  display: flex;
+  max-width: 310px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+form .hobbies > div {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+form .hobbies > div:hover {
+  color: red;
+}

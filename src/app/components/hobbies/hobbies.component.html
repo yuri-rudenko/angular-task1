@@ -1,0 +1,25 @@
+<form [formGroup]="hobbieForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="left">
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput>
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+              *ngIf="hobbieForm.get('name')?.touched && hobbieForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Duration</mat-label>
+    <input formControlName="duration" matInput type="number">
+    <mat-hint class="error" style="color: rgb(255, 146, 146);"
+              *ngIf="hobbieForm.get('duration')?.touched && hobbieForm.get('duration')?.hasError('required')">
+      Duration is required
+    </mat-hint>
+  </mat-form-field>
+  <button type="submit" class="submit">ADD a hobbie</button>
+  <div class="hobbies">
+    <div *ngFor="let hobbie of hobies()" (click)="deleteHobbie(hobbie)">
+      {{ hobbie.name }}
+    </div>
+  </div>
+
+</form>
